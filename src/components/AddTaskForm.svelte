@@ -17,7 +17,7 @@ const onEmitAddTask = () => {
     date,
     completed
   }
-  
+
   dispatch('onEmitAddTask', task)
 
   name = ''

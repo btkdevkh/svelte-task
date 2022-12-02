@@ -11,7 +11,6 @@ let name = "Tasks"
 
 <Router url={url}>
 	<h1 class="main-title"><img src="favicon.png" alt=""> {name}</h1>
-
 	<Route path="/"><Home /></Route>
 	<Route path="about"><About /></Route>
 </Router>
