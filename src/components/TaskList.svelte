@@ -1,14 +1,23 @@
 <script>
 
-import { onMount } from "svelte";
+import { onMount, onDestroy } from "svelte";
+import { fade, scale } from "svelte/transition";
+import { flip } from "svelte/animate";
 import TaskItem from "./TaskItem.svelte";
 import AddTaskForm from "./AddTaskForm.svelte";
 import { getTasks, addTask, toggleTask, deleteTask } from '../api/apiTasks'
+// import TaskStore from '../stores/TaskStore'
 
 export let isAddTask
+export let handleClick
 let tasks = []
 
-onMount(async () => {
+// first load with store data
+// const unsub = TaskStore.subscribe(data => tasks = data)
+// onDestroy(() => unsub())
+
+// get data from database
+onMount(async() => {
   tasks = await getTasks()
 })
 
@@ -29,6 +38,7 @@ const handleSubmit = (e) => {
   const task = e.detail
   addTask(task)
   tasks = [...tasks, task]
+  handleClick()
 }
 
 </script>
@@ -38,11 +48,13 @@ const handleSubmit = (e) => {
 {/if}
 <div class="task-list">
   {#each tasks as task (task.id)}
-    <TaskItem 
-      {task} 
-      on:onEmitToggleTask={handleToggleTask}
-      on:onEmitDeleteTask={handleDeleteTask}
-    />
+    <div in:fade out:scale|local animate:flip={{ duration: 500 }}>
+      <TaskItem 
+        {task} 
+        on:onEmitToggleTask={handleToggleTask}
+        on:onEmitDeleteTask={handleDeleteTask}
+      />
+    </div>
   {/each}
 </div>
   

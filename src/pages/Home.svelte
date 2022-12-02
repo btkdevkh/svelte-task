@@ -40,7 +40,7 @@ const goTo = () => {
 			/>
 		</div>
 
-		<TaskList {isAddTask} />
+		<TaskList {isAddTask} {handleClick} />
   </div>
 </main>
 
