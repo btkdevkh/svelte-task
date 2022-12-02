@@ -1,6 +1,6 @@
 # Svelte Task
 
-![alt text](https://github.com/btkdevkh/vue-task/blob/main/public/cover.png?raw=true)
+![alt text](https://github.com/btkdevkh/svelte-task/blob/main/public/cover.png?raw=true)
 
 ## Project Setup
 
